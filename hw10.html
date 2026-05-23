@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AII006 — E-Commerce Survey Results</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a1a18;
+    --muted: #6b6a65;
+    --accent: #1a3a5c;
+    --accent2: #c8773a;
+    --accent3: #3a7c5c;
+    --blue: #3266ad;
+    --teal: #1d9e75;
+    --purple: #7f77dd;
+    --coral: #d85a30;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--accent);
+    color: #fff;
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    right: -60px; bottom: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    right: 80px; bottom: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 10px; }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 400; line-height: 1.15; margin-bottom: 12px; }
+  .header-meta { font-size: 13px; opacity: 0.7; line-height: 1.7; }
+
+  .container { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 2.5rem; }
+  .metric {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .metric-accent { position: absolute; top: 0; left: 0; width: 3px; height: 100%; border-radius: 12px 0 0 12px; }
+  .metric-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .metric-value { font-family: 'DM Serif Display', serif; font-size: 38px; line-height: 1; color: var(--text); }
+  .metric-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 2.5rem 0 1.25rem;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 0; }
+  .chart-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .chart-card h3 { font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.25rem; }
+
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .bar-label { width: 90px; min-width: 90px; color: var(--muted); font-size: 12px; text-align: right; }
+  .bar-track { flex: 1; background: var(--bg); border-radius: 4px; height: 24px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 12px; font-weight: 500; }
+
+  .donut-wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .donut-legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+  .sites-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 0; }
+  .site-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .site-name { font-weight: 500; font-size: 15px; }
+  .site-count { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--accent2); line-height: 1; }
+  .site-pct { font-size: 11px; color: var(--muted); text-align: right; }
+  .rank-1 { border-top: 2px solid var(--accent2); }
+
+  .conclusions {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+  }
+  .conclusions p { font-size: 14px; line-height: 1.85; color: #3a3a38; margin-bottom: 14px; }
+  .conclusions p:last-child { margin: 0; }
+  .cite { display: inline-block; background: #e8f0f8; color: #1a3a5c; font-size: 10px; font-weight: 500; padding: 1px 7px; border-radius: 8px; margin-left: 3px; vertical-align: middle; letter-spacing: 0.04em; }
+
+  .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
+  .source-tag {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .source-tag:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2;
+  }
+  footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    header h1 { font-size: 26px; }
+    .metric-value { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="eyebrow">ECC006 · Homework Assignment #10</p>
+    <h1>Just how popular<br>is e-commerce?</h1>
+    <p class="header-meta">A survey of 20 people — friends, family, coworkers, and classmates<br>Examining online shopping behavior, demographics, and preferences · May 2026</p>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-accent" style="background:#3266ad;"></div>
+      <div class="metric-label">Total surveyed</div>
+      <div class="metric-value">20</div>
+      <div class="metric-sub">participants</div>
+    </div>
+    <div class="metric">
+      <div class="metric-accent" style="background:#1d9e75;"></div>
+      <div class="metric-label">Purchased online</div>
+      <div class="metric-value">17</div>
+      <div class="metric-sub">85% of respondents</div>
+    </div>
+    <div class="metric">
+      <div class="metric-accent" style="background:#c8773a;"></div>
+      <div class="metric-label">Browsed, not bought</div>
+      <div class="metric-value">2</div>
+      <div class="metric-sub">10% of respondents</div>
+    </div>
+    <div class="metric">
+      <div class="metric-accent" style="background:#888780;"></div>
+      <div class="metric-label">Never shopped online</div>
+      <div class="metric-value">1</div>
+      <div class="metric-sub">5% of respondents</div>
+    </div>
+  </div>
+
+  <div class="section-title">Survey data</div>
+  <div class="charts-grid">
+
+    <div class="chart-card">
+      <h3>Purchase frequency</h3>
+      <div class="bar-row">
+        <span class="bar-label">Weekly</span>
+        <div class="bar-track"><div class="bar-fill" style="width:41%; background:#3266ad; color:#b5d4f4;">7</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Monthly</span>
+        <div class="bar-track"><div class="bar-fill" style="width:53%; background:#5393cd; color:#e6f1fb;">9</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Yearly</span>
+        <div class="bar-track"><div class="bar-fill" style="width:12%; background:#b5d4f4; color:#042c53;">2</div></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Age range</h3>
+      <div class="bar-row">
+        <span class="bar-label">18–25</span>
+        <div class="bar-track"><div class="bar-fill" style="width:40%; background:#1d9e75; color:#e1f5ee;">8</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">26–39</span>
+        <div class="bar-track"><div class="bar-fill" style="width:35%; background:#5dcaa5; color:#04342c;">7</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">40–50</span>
+        <div class="bar-track"><div class="bar-fill" style="width:20%; background:#9fe1cb; color:#085041;">4</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Over 50</span>
+        <div class="bar-track"><div class="bar-fill" style="width:7%; background:#e1f5ee; color:#085041; padding-left:4px;">1</div></div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Gender</h3>
+      <div class="donut-wrap">
+        <div style="position:relative; width:140px; height:140px; flex-shrink:0;">
+          <canvas id="genderChart" width="140" height="140" role="img" aria-label="Donut chart: Male 60%, Female 40%">Male 12, Female 8.</canvas>
+        </div>
+        <div class="donut-legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#1a3a5c;"></span><span><strong style="color:var(--text);">Male</strong> — 60%</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#c8773a;"></span><span><strong style="color:var(--text);">Female</strong> — 40%</span></div>
+          <div style="margin-top:10px; font-size:12px; color:var(--muted);">12 male · 8 female</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Education level</h3>
+      <div class="bar-row">
+        <span class="bar-label">Grad school</span>
+        <div class="bar-track"><div class="bar-fill" style="width:30%; background:#7f77dd; color:#eeedfe;">6</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">College grad</span>
+        <div class="bar-track"><div class="bar-fill" style="width:40%; background:#afa9ec; color:#26215c;">8</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Some college</span>
+        <div class="bar-track"><div class="bar-fill" style="width:20%; background:#cecbf6; color:#26215c;">4</div></div>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">High school</span>
+        <div class="bar-track"><div class="bar-fill" style="width:10%; background:#eeedfe; color:#3c3489;">2</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Favorite sites -->
+  <div class="section-title">Favorite online shopping sites</div>
+  <div class="sites-grid">
+    <div class="site-card rank-1">
+      <div><div class="site-name">Amazon</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">10 votes</div></div>
+      <div><div class="site-count">50%</div></div>
+    </div>
+    <div class="site-card">
+      <div><div class="site-name">Trendyol</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">4 votes</div></div>
+      <div><div class="site-count" style="color:var(--teal);">20%</div></div>
+    </div>
+    <div class="site-card">
+      <div><div class="site-name">Hepsiburada</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">2 votes</div></div>
+      <div><div class="site-count" style="color:var(--purple);">10%</div></div>
+    </div>
+    <div class="site-card">
+      <div><div class="site-name">eBay</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">2 votes</div></div>
+      <div><div class="site-count" style="color:var(--purple);">10%</div></div>
+    </div>
+    <div class="site-card">
+      <div><div class="site-name">Etsy</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">1 vote</div></div>
+      <div><div class="site-count" style="color:var(--muted); font-size:22px;">5%</div></div>
+    </div>
+    <div class="site-card">
+      <div><div class="site-name">Other</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">1 vote</div></div>
+      <div><div class="site-count" style="color:var(--muted); font-size:22px;">5%</div></div>
+    </div>
+  </div>
+
+  <!-- Conclusions -->
+  <div class="section-title">Conclusions &amp; analysis</div>
+  <div class="conclusions">
+    <p>The results strongly confirm that e-commerce is now mainstream: <strong>85%</strong> of respondents have made at least one online purchase, and the majority buy at least once a month — indicating deeply habitual behavior rather than occasional novelty. This mirrors global trends; according to Statista, over 2.7 billion people shopped online worldwide in 2025, a number forecast to keep climbing. <span class="cite">Statista 2025</span></p>
+    <p>Younger respondents (18–39) make up 75% of our sample and are the most frequent buyers — purchasing weekly or monthly. This aligns with Pew Internet research showing adults under 50 shop online at substantially higher rates than older groups and are far more likely to use mobile devices to browse and purchase. <span class="cite">Pew Internet</span></p>
+    <p>Education correlates positively with online purchasing: 70% of respondents hold a college degree or higher, and nearly all of those had purchased online. This tracks with eMarketer data suggesting higher-educated consumers are more confident with digital payments and product research. <span class="cite">eMarketer</span></p>
+    <p>Amazon's dominance at 50% is unsurprising given its global logistics and trust infrastructure. Notably, Trendyol ranked second at 20% — reflecting the local Turkish market context of this survey, where Trendyol is the leading domestic platform. This underscores how regional platforms can rival global giants in local markets, a trend ClickZ has covered extensively. <span class="cite">ClickZ</span></p>
+    <p>The 10% who browsed but never purchased represent a persistent trust or friction gap. Barriers frequently cited in E-Commerce Times research include payment security concerns, difficulty returning items, and a preference to see products in person before buying. Reducing these friction points remains a central challenge for online retailers. <span class="cite">E-Commerce Times</span></p>
+  </div>
+
+  <!-- Sources -->
+  <div class="section-title">Sources</div>
+  <div class="sources">
+    <a href="http://pewinternet.org" class="source-tag">Pew Internet &amp; American Life Project</a>
+    <a href="http://www.emarketer.com/Articles" class="source-tag">eMarketer</a>
+    <a href="http://www.clickz.com" class="source-tag">ClickZ</a>
+    <a href="http://www.ecommercetimes.com" class="source-tag">E-Commerce Times</a>
+    <a href="https://www.statista.com" class="source-tag">Statista</a>
+  </div>
+
+  <footer>
+    <p>ECC006 — Homework Assignment #10 &nbsp;·&nbsp; E-Commerce Survey, May 2026</p>
+    <p>Prepared by: <a href="mailto:shalanqais@gmail.com">student@example.com</a></p>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  new Chart(document.getElementById('genderChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Male', 'Female'],
+      datasets: [{
+        data: [12, 8],
+        backgroundColor: ['#1a3a5c', '#c8773a'],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: false,
+      cutout: '68%',
+      plugins: { legend: { display: false }, tooltip: { enabled: true } }
+    }
+  });
+</script>
+</body>
+</html>

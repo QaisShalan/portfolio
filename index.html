@@ -339,6 +339,103 @@
       margin-top: 20px;
     }
 
+    /* ── Final Project card ── */
+    .qs-final-card {
+      border: 1px solid #d4c9b5;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .qs-final-preview {
+      background: linear-gradient(135deg, #0a0a0f 0%, #13131a 50%, #1a1a24 100%);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .qs-final-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 10% 50%, rgba(123,47,255,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 90% 30%, rgba(0,245,212,0.2) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .qs-final-preview-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .qs-final-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 6px;
+    }
+
+    .qs-final-title span {
+      background: linear-gradient(90deg, #00f5d4, #7b2fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .qs-final-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      position: relative;
+      z-index: 1;
+    }
+
+    .qs-final-dots {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .qs-final-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .qs-final-dot:nth-child(1) { background: #00f5d4; }
+    .qs-final-dot:nth-child(2) { background: #7b2fff; }
+    .qs-final-dot:nth-child(3) { background: #ff4d6d; }
+    .qs-final-dot:nth-child(4) { background: #f7b731; }
+    .qs-final-dot:nth-child(5) { background: #26de81; }
+    .qs-final-dot:nth-child(6) { background: #fd9644; }
+
+    .qs-final-footer {
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff8f0;
+      border-top: 1px solid #d4c9b5;
+    }
+
+    .qs-final-desc {
+      font-size: 12px;
+      color: #7a7068;
+      font-family: 'DM Mono', monospace;
+    }
+
     @media (max-width: 768px) {
       .qs-header {
         grid-template-columns: 1fr;
@@ -378,6 +475,12 @@
         flex-direction: column;
         gap: 8px;
       }
+
+      .qs-final-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
     }
   </style>
 </head>
@@ -398,7 +501,7 @@
         </h1>
 
         <p class="qs-subtitle">
-          Software Engineer & Creative Technologist
+          Software Engineer &amp; Creative Technologist
         </p>
 
         <p class="qs-bio">
@@ -526,7 +629,7 @@
 
     <div class="qs-section" id="homeworks">
 
-      <div class="qs-label">Homeworks & Projects</div>
+      <div class="qs-label">Homeworks &amp; Projects</div>
 
       <div class="qs-homeworks">
 
@@ -563,7 +666,7 @@
         <div class="qs-homework">
           <div>
             <h3>Homework 8</h3>
-            <p>Movie Database & Site Layout Projects</p>
+            <p>Movie Database &amp; Site Layout Projects</p>
           </div>
           <div class="qs-btn-group">
             <a href="movie8.html" target="_blank" class="qs-pdf-btn">MOVIE APP</a>
@@ -577,6 +680,33 @@
             <p>Form Design Implementation</p>
           </div>
           <a href="form9.html" target="_blank" class="qs-pdf-btn">VIEW PROJECT</a>
+        </div>
+
+        <div class="qs-homework">
+          <div>
+            <h3>Homework 10</h3>
+            <p>E-Commerce Survey &amp; Analysis</p>
+          </div>
+          <a href="hw10.html" target="_blank" class="qs-pdf-btn">VIEW PROJECT</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ── FINAL PROJECT ── -->
+    <div class="qs-section" id="final-project">
+
+      <div class="qs-label">Final Project</div>
+
+      <div class="qs-homeworks">
+
+        <div class="qs-homework">
+          <div>
+            <h3>Final Project</h3>
+            <p>My Hobbies — Sports &amp; Gaming</p>
+          </div>
+          <a href="project.html" target="_blank" class="qs-pdf-btn">VIEW PROJECT</a>
         </div>
 
       </div>
@@ -609,7 +739,7 @@
     </div>
 
     <div class="qs-footer">
-      <span class="qs-mono">© 2026 Qais Shalan</span>
+      <span class="qs-mono">&copy; 2026 Qais Shalan</span>
       <span class="qs-mono">Palestine · North Cyprus</span>
     </div>
 
